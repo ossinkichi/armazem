@@ -39,12 +39,13 @@
 ### Funcionalidade a ser adicionadas :
 
 ---
-*   ( ) Escolher quantidade a ser retira/adicionada do estoque
-*   ( ) Adicionar novos Produtos
-*   ( ) Adicionar novos Funcionarios
-*   ( ) Listagem de Funcionarios
-*   ( ) Alteração do estado dos Funcionarios
-*   ( ) Criação de Relatorios
-*   ( ) Condicionar a criação apenas após determinado tempo
-*   ( ) Listagem de Relatorios
+*   (  ) Escolher quantidade a ser retirada/adicionada do estoque
+*   ( X ) Adicionar novos Produtos
+*   ( X ) Adicionar novos Funcionarios
+*   ( X ) Listagem de Funcionarios
+*   (  ) Listagem de Funcionarios fora o administrador
+*   ( X ) Alteração do estado dos Funcionarios
+*   (  ) Criação de Relatorios
+*   (  ) Condicionar a criação apenas após determinado tempo
+*   ( X ) Listagem de Relatorios
 ---

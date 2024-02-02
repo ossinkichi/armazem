@@ -73,6 +73,20 @@ class Product extends DataBase{
         }
     }
 
+    public static function newProduto($name,$price,$estoque) {
+        try {
+            
+            $sql = self::$pdo->prepare('INSERT INTO estoque(name_product,price,em_estoque) VALUE(:np,:p,:e)');
+            $sql->bindValue(':np',$name);
+            $sql->bindValue(':p',$price);
+            $sql->bindValue(':e',$estoque);
+            $sql->execute();
+
+        } catch (\PDOException $errorPdo) {
+            echo $errorPdo->getMessage();
+        }
+    }
+
 
 
 }

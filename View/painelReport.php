@@ -1,20 +1,45 @@
+<a href="home">Voltar</a>
 <table>
     <thead>
         <tr>
             <th scope="col">Autor</th>
-            <th scope="col">Entrada</th>
-            <th scope="col">Saida</th>
-            <th scope="col">Valor de Saida</th>
             <th scope="col">Data de emisão</th>
+            <th scope="col">Valor de Saida</th>
+            <th scope="col">Estoque</th>
+            <th scope="col">Saida</th>
+            <th scope="col">Entrada</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>Pascal Vagner</td>
-            <td>2</td>
-            <td>10</td>
-            <td>158,00</td>
-            <td>24/01/2023</td>
-        </tr>
+
+        <?php
+            for($i = 0; $i < count($this->dados); $i++){
+
+                ?>
+                
+                <tr>
+
+                    <?php
+
+                    foreach($this->dados[$i] as $key=>$value){
+
+                        if($key != 'id'){
+                        ?>
+
+                            <td><?= $value ?></td>
+                        
+                        <?php
+                        }
+
+                    }
+
+                    ?>
+
+                </tr>
+                
+                <?php
+
+            }
+        ?>
     </tbody>
 </table>

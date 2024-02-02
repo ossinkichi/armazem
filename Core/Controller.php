@@ -15,7 +15,7 @@ class Controller{
     }
 
     public function carregarViewNoTemplate($nomeView, $dadosModel = []){
-        extract($dadosModel);
+        // extract($dadosModel);
         require 'View/'.$nomeView.'.php';
     }
 

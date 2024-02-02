@@ -2,14 +2,14 @@
 
 class Reports extends DataBase{
 
-    public function getReports(){
+    public static function getReports(){
 
         try {
             
-            $sql = self::$pdo->prepare('SELCT * FROM repot');
+            $sql = self::$pdo->prepare('SELECT * FROM repot');
             $sql->execute();
 
-            $dados = $sql->fetch(PDO::FETCH_ASSOC);
+            $dados = $sql->fetchall(PDO::FETCH_ASSOC);
 
             return $dados;
 
