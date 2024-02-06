@@ -26,7 +26,7 @@ class Usuario extends DataBase{
         $dados = [];
         
         try {
-            $sql = self::$pdo->prepare('SELECT * FROM users');
+            $sql = self::$pdo->prepare('SELECT * FROM users WHERE access_level != 0');
             $sql->execute();
             
 

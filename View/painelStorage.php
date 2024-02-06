@@ -30,9 +30,11 @@
         <?php }  }?>
 
             <td>
-                <a href="estoque/adicionar/?num=<?=$this->dados[$i]['id'];?>">Adicionar</a>
-                |
-                <a href="estoque/remover/?num=<?=$this->dados[$i]['id'];?>">Remover</a>
+                <form action="estoque/alterarEstoque/" method="get">
+                    <button type="submit" name="adicionar" value="<?=$this->dados[$i]['id'];?>">Adicionar</button>
+                    <input type="text" name="quant" style="width: 25px;">
+                    <button type="submit" name="remover" value="<?=$this->dados[$i]['id'];?>">Remover</button>
+                </form>
             </td>
 
         </tr>

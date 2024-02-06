@@ -37,12 +37,12 @@ class Product extends DataBase{
         }
     }
 
-    public static function addEstoque($id){
+    public static function addEstoque($id,$quant){
         try {
 
             $dado = self::getEstoque($id);
-            $dado['entrada']    += 1;
-            $dado['em_estoque'] += 1;
+            $dado['entrada']    += $quant;
+            $dado['em_estoque'] += $quant;
             
             $sql = self::$pdo->prepare('UPDATE estoque SET em_estoque = :em, entrada = :e WHERE estoque.id = :id');
             $sql->bindValue(':e',$dado['entrada']);
@@ -55,12 +55,12 @@ class Product extends DataBase{
         }
     }
 
-    public static function removeEstoque($id){
+    public static function removeEstoque($id,$quant){
         try {
 
             $dado = self::getEstoque($id);
-            $dado['saida']          += 1;
-            $dado['em_estoque']     -= 1;
+            $dado['saida']          += $quant;
+            $dado['em_estoque']     -= $quant;
             
             $sql = self::$pdo->prepare('UPDATE estoque SET em_estoque = :em, saida = :s WHERE estoque.id = :id');
             $sql->bindValue(':s',$dado['saida']);

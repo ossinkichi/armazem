@@ -35,29 +35,38 @@ class estoqueController extends Controller{
 
     }
 
-    
+    public function alterarEstoque(){
+        $dados = $_GET;
 
-    public function adicionar(){
-
-        $id = htmlspecialchars($_GET['num']);
+        if(empty($dados['adicionar']) || empty($dados['adicionar'])){
+            header('location: \armazem/estoque ');
+            exit;
+        }
         
+        if(array_key_exists('adicionar',$dados) && !empty($dados['adicionar'])){
+            $this->adicionar($dados['adicionar'],$dados['quant']);
+        }
+        if(array_key_exists('remover',$dados) && !empty($dados['adicionar'])){
+            $this->remover($dados['remover'],$dados['quant']);
+        }
+    }
+
+    public function adicionar($id,$quant){
+
         $dados = $this->produto::getEstoque($id);
 
         print_r($dados);
-        $this->produto::addEstoque($id);
+        $this->produto::addEstoque($id,$quant);
 
         header('location: \armazem/estoque ');
 
     }
 
-    public function remover(){
+    public function remover($id,$quant){
 
-        $id = htmlspecialchars($_GET['num']);
-        
-        $produtos   = new Product;
-        $dados      = $produtos::getEstoque($id);
+        $dados  = $this->produto::getEstoque($id);
 
-        $produtos::removeEstoque($id);
+        $this->produto::removeEstoque($id,$quant);
 
         header('location: \armazem/estoque ');
 
