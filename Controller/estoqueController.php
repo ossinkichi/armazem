@@ -15,7 +15,7 @@ class estoqueController extends Controller{
         
         $dados = $this->estoque();
         
-        $this->carregarTemplate('painelStorage',$dados);
+        $this->carregarTemplate('painelStorage',$dados,'Estoque');
 
     }
     
@@ -27,11 +27,11 @@ class estoqueController extends Controller{
         
     }
     
-    public function  produto(){
+    public function produto(){
         
         $dados = $this->estoque();
         
-        $this->carregarTemplate('registerProdcut',$dados);
+        $this->carregarTemplate('registerProdcut',$dados,'Novo Produto');
 
     }
 

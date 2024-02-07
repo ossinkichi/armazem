@@ -35,7 +35,7 @@ class Core extends Controller{
                 array_shift($url);
             }
         }else{
-            $controller = 'loginController';
+            $controller = 'homeController';
             $method = 'index';
         }
 

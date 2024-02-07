@@ -1,3 +1,4 @@
+<a href="/armazem/estoque">Voltar</a>
 <form action="newProduct" method="post">
     <div>
         <input type="text" name="name" placeholder="Produto">

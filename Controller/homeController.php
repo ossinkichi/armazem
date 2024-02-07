@@ -2,13 +2,13 @@
 
 class homeController extends Controller{
 
-    public function __construct() {
-        session_start()        ;
-    }
-
     public function  index(){
-        
-        $this->carregarTemplate('home');
+        session_start();
+        if(empty($_SESSION)){
+            header('location: /armazem/login');
+        }
+        $this->carregarTemplate('home',[],'Home');
+        print_r($_SESSION);
 
     }
 

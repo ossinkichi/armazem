@@ -35,7 +35,15 @@
                         }
                     }
                     if($this->dados[$i]['status'] == 'desativado'){
+                        if($_SESSION['accessLevel'] == 1){
 
+                            ?>
+                            <td>
+                                <a href="funcionarios/perfil/?pos=<?=$this->dados[$i]['id'];?>">Info</a>
+                            </td>
+                            <?php
+
+                        }else{
                         ?>
                         <td>
                             <a href="funcionarios/religar/?pos=<?=$this->dados[$i]['id'];?>">Reativar</a>
@@ -46,8 +54,18 @@
                     </tr>
     
                     <?php
-
+                        }
                     }else{
+                        if($_SESSION['accessLevel'] == 1){
+
+                            ?>
+                            <td>
+                                <a href="funcionarios/perfil/?pos=<?=$this->dados[$i]['id'];?>">Info</a>
+                            </td>
+                            <?php
+
+                        }else{
+                        ?>
                 ?>
                     <td>
                         <a href="funcionarios/desligar/?pos=<?=$this->dados[$i]['id'];?>">Desligar</a>
@@ -58,6 +76,7 @@
                 </tr>
 
                 <?php
+                        }
                     }
 
             }

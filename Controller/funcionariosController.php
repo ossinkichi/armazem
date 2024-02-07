@@ -12,9 +12,13 @@ class funcionariosController extends Controller{
 
     public function  index(){
 
+        if($_SESSION['accessLevel'] == 2){
+            header('location: home');
+        }
+
         $dados = $this->users();
         
-        $this->carregarTemplate('painelServant',$dados);
+        $this->carregarTemplate('painelServant',$dados,'Funcionarios');
 
     }
 
@@ -33,11 +37,14 @@ class funcionariosController extends Controller{
             $dados = $this->user::perfil($dado);
         }
 
-        $this->carregarTemplate('perfil',$dados);
+        $this->carregarTemplate('perfil',$dados,'Dados do Funcionario '.$dados['name']);
     }
 
     public function register() {
-        $this->carregarTemplate('registerServant');
+        if($_SESSION['accessLevel'] != 0 || !isset($_SESSION['accessLevel']) || !empty($_SESSION['accessLevel'])){
+            header('location: \armazem\funcionarios');
+        }
+        $this->carregarTemplate('registerServant','','Registrar novo funcionario');
     }
 
     public function newRegister() {
@@ -45,6 +52,7 @@ class funcionariosController extends Controller{
        if(isset($_POST) && !empty($_POST)){
             $name           = htmlspecialchars($_POST['name']);
             $password       = htmlspecialchars($_POST['pass']);
+            $password       = password_hash($password,PASSWORD_DEFAULT);
             $dateOfBirth    = htmlspecialchars($_POST['dateOfBirth']);
             $gender         = htmlspecialchars($_POST['gender']);
             $mail           = htmlspecialchars($_POST['e-mail']);
