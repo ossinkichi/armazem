@@ -4,7 +4,7 @@ class homeController extends Controller{
 
     public function  index(){
         session_start();
-        if(empty($_SESSION)){
+        if(!isset($_SESSION['accessLevel'])){
             header('location: /armazem/login');
         }
         $this->carregarTemplate('home',[],'Home');

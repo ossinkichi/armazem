@@ -11,10 +11,7 @@ class Core extends Controller{
 
         $url = $_SERVER['REQUEST_URI'];
 
-        $url = explode('/',$url);
-        array_shift($url);
-        
-        //Retirar caso dé problema na uri
+        $url = explode('/',ltrim($url, '/'));
         array_shift($url);
 
         if(!empty($url[0])){

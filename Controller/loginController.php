@@ -3,8 +3,12 @@
 class loginController extends Controller{
 
     public function  index(){
+        session_start();
+        if(isset($_SESSION['accessLevel'])){
+            header('location: home');
+        }
 
-        $this->carregarTemplate('login');
+        $this->carregarTemplate('login',[],'Login');
 
     }
 
