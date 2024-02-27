@@ -10,7 +10,7 @@ class relatorioController extends Controller{
 
         $dados = $this->getRelatorios();
         
-        $this->carregarTemplate('painelReport',$dados);
+        $this->carregarTemplate('listOfReports',$dados,'Relatorios Mensais');
 
     }
 

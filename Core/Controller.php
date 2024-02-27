@@ -2,8 +2,8 @@
 
 class Controller{
 
-    public $dados;
-    public $title;
+    public array $dados;
+    public string $title;
 
     public function __construct() {
         $this->dados  = [];

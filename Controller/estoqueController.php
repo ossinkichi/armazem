@@ -15,7 +15,7 @@ class estoqueController extends Controller{
         
         $dados = $this->estoque();
         
-        $this->carregarTemplate('painelStorage',$dados,'Estoque');
+        $this->carregarTemplate('productList',$dados,'Estoque');
 
     }
     
@@ -38,9 +38,8 @@ class estoqueController extends Controller{
     public function alterarEstoque(){
         $dados = $_GET;
 
-        if(empty($dados['adicionar']) || empty($dados['adicionar'])){
+        if(!isset($dados['adicionar']) || empty($dados['adicionar'])){
             header('location: \armazem/estoque ');
-            exit;
         }
         
         if(array_key_exists('adicionar',$dados) && !empty($dados['adicionar'])){
@@ -75,11 +74,12 @@ class estoqueController extends Controller{
     public function newProduct() {
         if (isset($_POST) && !empty($_POST)) {
             
+            $code       = htmlspecialchars($_POST['code']);
             $name       = htmlspecialchars($_POST['name']);
             $price      = htmlspecialchars($_POST['price']);
             $estoque    = htmlspecialchars($_POST['estoque']);
 
-            $this->produto::newProduto($name,$price,$estoque);
+            $this->produto::newProduto($code,$name,$price,$estoque);
 
         }
 

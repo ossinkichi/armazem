@@ -18,7 +18,7 @@ class funcionariosController extends Controller{
 
         $dados = $this->users();
         
-        $this->carregarTemplate('painelServant',$dados,'Funcionarios');
+        $this->carregarTemplate('listOfEmployees',$dados,'Funcionarios');
 
     }
 
@@ -27,6 +27,11 @@ class funcionariosController extends Controller{
         $dados = $this->user::getUsers();
 
         return $dados;
+
+    }
+
+    public function alterar(){
+        $this->carregarTemplate('ChangeEmployeeData',$dados = [],'Funcionarios');
 
     }
 
@@ -44,7 +49,7 @@ class funcionariosController extends Controller{
         if($_SESSION['accessLevel'] != 0 || !isset($_SESSION['accessLevel']) || !empty($_SESSION['accessLevel'])){
             header('location: \armazem\funcionarios');
         }
-        $this->carregarTemplate('registerServant','','Registrar novo funcionario');
+        $this->carregarTemplate('RegisterNewEmployee',$dados = [],'Registrar novo funcionario');
     }
 
     public function newRegister() {

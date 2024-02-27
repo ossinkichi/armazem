@@ -7,9 +7,12 @@ class homeController extends Controller{
         if(!isset($_SESSION['accessLevel'])){
             header('location: /armazem/login');
         }
-        $this->carregarTemplate('home',[],'Home');
-        print_r($_SESSION);
-
+        
+        if($_SESSION['accessLevel'] != 2){
+            $this->carregarTemplate('home',$dados = [],'Home');
+        }else{
+            $this->carregarTemplate('painel',$dados = [],'Painel');
+        }
     }
 
 }

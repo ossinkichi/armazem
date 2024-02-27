@@ -8,7 +8,7 @@ class Product extends DataBase{
 
         try {
             
-            $sql = self::$pdo->prepare('SELECT id,name_product, price, em_estoque,saida, entrada FROM estoque');
+            $sql = self::$pdo->prepare('SELECT * FROM estoque');
             $sql->execute();
 
             $dados = $sql->fetchall(PDO::FETCH_ASSOC);
@@ -73,10 +73,11 @@ class Product extends DataBase{
         }
     }
 
-    public static function newProduto($name,$price,$estoque) {
+    public static function newProduto($code,$name,$price,$estoque) {
         try {
             
-            $sql = self::$pdo->prepare('INSERT INTO estoque(name_product,price,em_estoque) VALUE(:np,:p,:e)');
+            $sql = self::$pdo->prepare('INSERT INTO estoque(codigo,name_product,price,em_estoque) VALUE(:cd,:np,:p,:e)');
+            $sql->bindValue(':cd',$code);
             $sql->bindValue(':np',$name);
             $sql->bindValue(':p',$price);
             $sql->bindValue(':e',$estoque);

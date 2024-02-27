@@ -8,7 +8,7 @@ class loginController extends Controller{
             header('location: home');
         }
 
-        $this->carregarTemplate('login',[],'Login');
+        $this->carregarTemplate('login',$dados = [],'Login');
 
     }
 
