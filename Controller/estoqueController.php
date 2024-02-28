@@ -12,10 +12,13 @@ class estoqueController extends Controller{
 
     public function  index(){
         
+        if(!isset($_SESSION['accessLevel'])){
+            header('location: login');
+        }
         
         $dados = $this->estoque();
         
-        $this->carregarTemplate('productList',$dados,'Estoque');
+        $this->carregarTemplate('productList',$dados,'Estoque',[]);
 
     }
     
@@ -30,8 +33,9 @@ class estoqueController extends Controller{
     public function produto(){
         
         $dados = $this->estoque();
+        $categories = $this->getCategories();
         
-        $this->carregarTemplate('registerProdcut',$dados,'Novo Produto');
+        $this->carregarTemplate('registerProdcut',$dados,'Novo Produto',$categories);
 
     }
 
@@ -78,12 +82,37 @@ class estoqueController extends Controller{
             $name       = htmlspecialchars($_POST['name']);
             $price      = htmlspecialchars($_POST['price']);
             $estoque    = htmlspecialchars($_POST['estoque']);
+            $category    = htmlspecialchars($_POST['category']);
 
-            $this->produto::newProduto($code,$name,$price,$estoque);
+            $this->produto::newProduto($code,$name,$price,$estoque,$category);
 
         }
 
         header('location: /armazem/estoque');
     }
 
+    public function categoria(){
+
+        if(!isset($_SESSION['accessLevel'])){
+            header('location: login');
+        }
+
+        $this->carregarTemplate('registerCategory',[],'Nova categoria',[]);
+
+    }
+
+    public function getCategories(){
+        $categories = $this->produto::getCategories();
+
+        return $categories;
+    }
+
+    public function setCategory(){
+        $category = htmlspecialchars($_POST['category']);
+        $category = ucfirst($category);
+
+        $this->produto::setNewCategory($category);
+
+        header('location: \armazem\estoque');
+    }
 }

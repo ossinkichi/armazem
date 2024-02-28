@@ -67,14 +67,25 @@
                 <th scope="col">Nome</th>
                 <th scope="col">Preço</th>
                 <th scope="col">Em estoque</th>
-                <th scope="col">Saida</th>
-                <th scope="col">Entrada</th>
+                <th scope="col">Categoria</th>
                 <th scope="col">Adicionar</th>
             </tr>
         </thead>
         <tbody class="text-center">
             
             <?php
+                if(count($this->dados) <= 0){
+
+                    ?>
+                    
+                    <tr>
+                        <td colspan="7">Nenhum Produto Cadastrado</td>
+                    </tr>
+                    
+                    <?php
+
+                }
+
                 for ($i=0; $i < count($this->dados); $i++) { 
             ?>
     
@@ -82,7 +93,7 @@
     
             <?php
                 foreach ($this->dados[$i] as $key=>$val) {        
-                    if($key != 'id' && $key != 'exit_price'){
+                    if($key != 'id'){
             ?>
     
                 <td><?=$val;?></td>            
@@ -105,7 +116,7 @@
     
             </tr>
     
-            <?php  } ?>
+            <?php  }  ?>
             
         </tbody>
     </table>

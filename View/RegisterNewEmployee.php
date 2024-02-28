@@ -16,7 +16,7 @@
     <div class="container">
         <div class="card p-3">
 
-                <form class="row g-3 needs-validation" action="newRegister" method="post"  novalidate>
+                <form class="row g-3 needs-validation" action="newRegister" method="post">
                     <div class="col-md-4 position-relative">
                         <label for="validationTooltip01" class="form-label">Nome Completo</label>
                         <input type="text" class="form-control" id="validationTooltip01" name="name" required>

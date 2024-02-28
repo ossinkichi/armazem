@@ -26,15 +26,15 @@ class loginController extends Controller{
             $userClass = new Usuario;
             $dadosUser = $userClass::getUser($user);
 
-            if(count($dadosUser) == 0){
+            if(count($dadosUser) > 0){
                 header('location: /armazem/login');
             }
             
             for($i = 0;$i < count($dadosUser);$i++){
-
-                if(password_verify($password,$dadosUser[$i]['pass'])){
+                
+                if(password_verify($password,$dadosUser[$i]['password'])){
                     session_start();
-                    $_SESSION['accessLevel'] = $dadosUser[$i]['access_level'];
+                    $_SESSION['accessLevel'] = $dadosUser[$i]['accessLevel'];
 
                     header('location: /armazem/home');
                 }else{

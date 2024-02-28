@@ -1,22 +1,17 @@
-<!-- <a href="/armazem/estoque">Voltar</a>
-<form action="newProduct" method="post">
-    <div>
-        <input type="number" name="code" placeholder="Codigo">
-        <input type="text" name="name" placeholder="Produto">
-        <input type="text" name="price" placeholder="Preço">
-        <input type="text" name="estoque" placeholder="Estoque">
-    </div>
-    <button type="submit">Registrar</button>
-</form> -->
-
 <nav class="navbar bg-dark">
     <div class="container-fluid navbar-expand-lg">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a href="\armazem\produtos" class="nav-link text-light">
+                <a href="\armazem\estoque" class="nav-link text-light">
                     <img src="assets/svg/arrowLeft.svg" alt="">    
                     Voltar
                 </a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a href="categoria" class="nav-link text-light">Nova categoria</a>
             </li>
         </ul>
     </div>
@@ -33,7 +28,7 @@
 
                 <div class="form-floating mb-3">
                     <input type="number" name="code" class="form-control" id="floatingInput" placeholder="Codigo do produto">
-                    <label for="floatingCode">Codigo do profudo</label>
+                    <label for="floatingCode">Codigo do produto</label>
                 </div>
                 
                 <div class="form-floating mb-3">
@@ -49,9 +44,24 @@
                 <div class="form-floating">
                     <select name="category" class="form-select" id="floatingSelectGrid">
                         <option selected disabled>---</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+
+                        <?php
+                        
+                           foreach($this->dados2 as $key){
+                                foreach($key as $value){
+
+
+                                    ?>
+                                    
+                                    <option value="<?=$value?>"><?=$value?></option>
+
+                                    
+                                    <?php
+
+                            }   }
+
+                        ?>
+
                     </select>
                     <label for="floatingSelectGrid">Selecione uma categoria</label>
                 </div>

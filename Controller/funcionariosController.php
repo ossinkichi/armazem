@@ -12,13 +12,13 @@ class funcionariosController extends Controller{
 
     public function  index(){
 
-        if($_SESSION['accessLevel'] == 2){
-            header('location: home');
+        if(!isset($_SESSION['accessLevel'])){
+            header('location: login');
         }
 
         $dados = $this->users();
         
-        $this->carregarTemplate('listOfEmployees',$dados,'Funcionarios');
+        $this->carregarTemplate('listOfEmployees',$dados,'Funcionarios',[]);
 
     }
 
@@ -31,7 +31,7 @@ class funcionariosController extends Controller{
     }
 
     public function alterar(){
-        $this->carregarTemplate('ChangeEmployeeData',$dados = [],'Funcionarios');
+        $this->carregarTemplate('ChangeEmployeeData',$dados = [],'Funcionarios',[]);
 
     }
 
@@ -42,14 +42,14 @@ class funcionariosController extends Controller{
             $dados = $this->user::perfil($dado);
         }
 
-        $this->carregarTemplate('perfil',$dados,'Dados do Funcionario '.$dados['name']);
+        $this->carregarTemplate('perfil',$dados,'Dados do Funcionario '.$dados['name'],[]);
     }
 
     public function register() {
         if($_SESSION['accessLevel'] != 0 || !isset($_SESSION['accessLevel']) || !empty($_SESSION['accessLevel'])){
             header('location: \armazem\funcionarios');
         }
-        $this->carregarTemplate('RegisterNewEmployee',$dados = [],'Registrar novo funcionario');
+        $this->carregarTemplate('RegisterNewEmployee',$dados = [],'Registrar novo funcionario',[]);
     }
 
     public function newRegister() {
@@ -62,9 +62,9 @@ class funcionariosController extends Controller{
             $gender         = htmlspecialchars($_POST['gender']);
             $mail           = htmlspecialchars($_POST['e-mail']);
             $phone          = htmlspecialchars($_POST['phone']);
-            $accessLevel    = htmlspecialchars($_POST['accessLevel']);
+            $accessLevel    = htmlspecialchars(intval($_POST['accessLevel']));
 
-            $this->user::setUser($name,$password,$dateOfBirth,$gender,$mail,$phone,$accessLevel);
+            $this->user::setNewUser($name,$password,$dateOfBirth,$gender,$mail,$phone,$accessLevel);
 
         }
         header('location: /armazem/funcionarios');

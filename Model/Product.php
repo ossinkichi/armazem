@@ -8,7 +8,7 @@ class Product extends DataBase{
 
         try {
             
-            $sql = self::$pdo->prepare('SELECT * FROM estoque');
+            $sql = self::$pdo->prepare('SELECT * FROM products');
             $sql->execute();
 
             $dados = $sql->fetchall(PDO::FETCH_ASSOC);
@@ -73,14 +73,15 @@ class Product extends DataBase{
         }
     }
 
-    public static function newProduto($code,$name,$price,$estoque) {
+    public static function newProduto($code,$name,$price,$estoque,$category) {
         try {
             
-            $sql = self::$pdo->prepare('INSERT INTO estoque(codigo,name_product,price,em_estoque) VALUE(:cd,:np,:p,:e)');
+            $sql = self::$pdo->prepare('INSERT INTO products(code,name,price,inStock,category) VALUE(:cd,:np,:p,:e,:c)');
             $sql->bindValue(':cd',$code);
             $sql->bindValue(':np',$name);
             $sql->bindValue(':p',$price);
             $sql->bindValue(':e',$estoque);
+            $sql->bindValue(':c',$category);
             $sql->execute();
 
         } catch (\PDOException $errorPdo) {
@@ -88,6 +89,36 @@ class Product extends DataBase{
         }
     }
 
+    public static function getCategories(){
+
+        try {
+            
+            $sql = self::$pdo->prepare('SELECT category FROM categories');
+            $sql->execute();
+
+            $dados = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+            return $dados;
+
+        } catch (PDOException $errorPdo) {
+            echo $errorPdo->getCode();
+        }
+
+    }
+
+    public static function setNewCategory($category){
+
+        try {
+            
+            $sql = self::$pdo->prepare('INSERT INTO categories(category) VALUE(:c)');
+            $sql->bindValue(':c',$category);
+            $sql->execute();
+
+        } catch (PDOException $errorPdo) {
+            echo $errorPdo->getMessage();
+        }
+
+    }
 
 
 }

@@ -80,7 +80,7 @@
                         
                             foreach($this->dados[$i] as $key=>$value){
         
-                                if($key != 'id' && $key != 'pass'){
+                                if($key != 'id' && $key != 'password'){
                                 ?>
         
                                     <td><?= $value ?></td>

@@ -26,7 +26,7 @@ class Usuario extends DataBase{
         $dados = [];
         
         try {
-            $sql = self::$pdo->prepare('SELECT * FROM users WHERE access_level != 0');
+            $sql = self::$pdo->prepare('SELECT * FROM users WHERE accessLevel != 0');
             $sql->execute();
             
 
@@ -59,10 +59,10 @@ class Usuario extends DataBase{
 
     }
 
-    public static function setUser($name,$password,$dateOfBirth,$gender,$mail,$phone,$accessLevel){
+    public static function setNewUser($name,$password,$dateOfBirth,$gender,$mail,$phone,$accessLevel){
         try {
             
-            $sql = self::$pdo->prepare('INSERT INTO users(name,pass,dateOfBirth,gender,email,phone,access_level) VALUE(:n,:pa,:dob,:g,:e,:ph,:al)');
+            $sql = self::$pdo->prepare('INSERT INTO users(name,password,dateOfBirth,gender,email,phone,accessLevel) VALUE(:n,:pa,:dob,:g,:e,:ph,:al)');
             $sql->bindValue(':n',$name);
             $sql->bindValue(':pa',$password);
             $sql->bindValue(':dob',$dateOfBirth);

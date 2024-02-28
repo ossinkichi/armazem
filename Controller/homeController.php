@@ -9,9 +9,9 @@ class homeController extends Controller{
         }
         
         if($_SESSION['accessLevel'] != 2){
-            $this->carregarTemplate('home',$dados = [],'Home');
+            $this->carregarTemplate('home',$dados = [],'Home',[]);
         }else{
-            $this->carregarTemplate('painel',$dados = [],'Painel');
+            $this->carregarTemplate('painel',$dados = [],'Painel',[]);
         }
     }
 

@@ -10,7 +10,7 @@ class DataBase{
 
     private static function connect(){
         define('HOST','localhost');
-        define('DBNAME','armazem');
+        define('DBNAME','supermarket');
         define('NAME','root');
         define('PASSWORD','');
 
