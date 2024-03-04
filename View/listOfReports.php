@@ -25,12 +25,10 @@
         <table class="table table-bordered">
             <thead class="table-dark">
                 <tr>
+                    <th scope="col">Codigo de Ocorrencia</th>
                     <th scope="col">Autor</th>
-                    <th scope="col">Data de emisão</th>
-                    <th scope="col">Valor de Saida</th>
-                    <th scope="col">Estoque</th>
-                    <th scope="col">Saida</th>
-                    <th scope="col">Entrada</th>
+                    <th scope="col">Assunto</th>
+                    <th scope="col">Data do Relatorio</th>
                 </tr>
             </thead>
             <tbody>

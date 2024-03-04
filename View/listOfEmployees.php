@@ -91,17 +91,14 @@
                                 if($_SESSION['accessLevel'] == 1){
         
                                     ?>
-                                    <td class="text-center">
-                                        <a href="funcionarios/perfil/?pos=<?=$this->dados[$i]['id'];?>">Info</a>
+                                    <td class="">
                                     </td>
                                     <?php
         
                                 }else{
                                 ?>
                                 <td class="text-center">
-                                    <a href="funcionarios/Alterar/?pos=<?=$this->dados[$i]['id'];?>">Alterar</a>
-                                    |
-                                    <a href="funcionarios/perfil/?pos=<?=$this->dados[$i]['id'];?>">Info</a>
+                                    <a class="text-decoration-none" href="funcionarios/Alterar/?pos=<?=$this->dados[$i]['id'];?>">Alterar</a>
                                 </td>
             
                             </tr>

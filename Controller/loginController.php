@@ -8,7 +8,7 @@ class loginController extends Controller{
             header('location: home');
         }
 
-        $this->carregarTemplate('login',$dados = [],'Login');
+        $this->carregarTemplate('login',$dados = [],'Login',[]);
 
     }
 
@@ -35,7 +35,8 @@ class loginController extends Controller{
                 if(password_verify($password,$dadosUser[$i]['password'])){
                     session_start();
                     $_SESSION['accessLevel'] = $dadosUser[$i]['accessLevel'];
-
+                    $_SESSION['name'] = $dadosUser[$i]['name'];
+                    
                     header('location: /armazem/home');
                 }else{
                     header('location: /armazem/login');

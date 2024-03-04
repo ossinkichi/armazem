@@ -1,7 +1,7 @@
 <section class="d-flex flex-column justify-content-center">
     <div class="container">
         <div class="card p-3 py-5 m-auto shadow p-3 mb-5 bg-body-tertiary rounded" style="width: 350px;">
-            <form action="login/validate" method="post" class="" >
+            <form action="login/validate" method="post">
 
                 <div class="d-flex flex-column gap-2">
 

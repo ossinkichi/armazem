@@ -1,15 +1,24 @@
 <a href="/armazem/funcionarios">Voltar</a>
 
-<span><?=$this->dados['dateOfBirth'];?></span>
+<div class="container">
 
-<h3><?=$this->dados['name'];?></h3>
+    <div class="row">
 
-<div>
-    <p><?=$this->dados['email'];?></p>
-    <p><?=$this->dados['phone'];?></p>
-    <p><?=$this->dados['gender'];?></p>
+        <span>Data de nascimento : <?=$this->dados['dateOfBirth'];?></span>
+        
+        <span>name: <h3><?=$this->dados['name'];?></h3></span>
+        
+        <div>
+            <p>Email: <?=$this->dados['email'];?></p>
+            <p>Telefone: <?=$this->dados['phone'];?></p>
+            <p>Genero: <?=$this->dados['gender'];?></p>
+        </div>
+        
+        <span>Nivel de Acesso: <?=$this->dados['accessLevel'];?></span>
+        
+        <span>Status de atividade: <?=$this->dados['status'];?></span>
+
+    </div>
+    
+
 </div>
-
-<span><?=$this->dados['access_level'];?></span>
-
-<span><?=$this->dados['status'];?></span>

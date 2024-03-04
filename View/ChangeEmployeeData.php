@@ -19,7 +19,7 @@
                 <form class="row g-3 needs-validation" action="#" method="post"  novalidate>
                     <div class="col-md-4 position-relative">
                         <label for="validationTooltip01" class="form-label">Nome Completo</label>
-                        <input type="text" class="form-control" id="validationTooltip01" name="name" required>
+                        <input type="text" class="form-control" id="validationTooltip01" name="name" value="<?= $this->dados['name'];?>" required>
                         <div class="invalid-tooltip">
                             Por favor insira um nome
                         </div>
@@ -27,7 +27,7 @@
                     
                     <div class="col-md-4 position-relative">
                         <label for="validationTooltip01" class="form-label">Senha</label>
-                        <input type="password" class="form-control" id="validationTooltip01" name="pass" required>
+                        <input type="password" class="form-control" id="validationTooltip01" name="pass" value="<?=$this->dados['password'];?>" required>
                         <div class="invalid-tooltip">
                             Por favor insira uma senha.
                         </div>
@@ -84,6 +84,18 @@
                             Por favor escolha um cargo.
                         </div>
                     </div>
+                    
+                    <div class="col-md-3 position-relative">
+                        <label for="validationTooltip04" class="form-label">Status</label>
+                        <select name="accessLevel" class="form-select" id="validationTooltip04" required>
+                            <option selected disabled>Status</option>
+                            <option value="0">Ativo</option>
+                            <option value="1">Inativo</option>
+                        </select>
+                        <div class="invalid-tooltip">
+                            Por favor escolha um cargo.
+                        </div>
+                    </div>
 
                     <div class="col-12">
                         <button class="btn btn-primary" type="submit">Alterar dados</button>
@@ -93,3 +105,8 @@
     </div>
 
 </section>
+
+<?php
+    echo '<pre>';
+    print_r($this->dados);
+?>

@@ -24,7 +24,7 @@ class Product extends DataBase{
     public static function getEstoque($id){
         try {
             
-            $sql = self::$pdo->prepare('SELECT em_estoque,entrada,saida FROM estoque WHERE id = :id');
+            $sql = self::$pdo->prepare('SELECT * FROM products WHERE id = :id');
             $sql->bindValue(':id',$id);
             $sql->execute();
 
@@ -41,18 +41,47 @@ class Product extends DataBase{
         try {
 
             $dado = self::getEstoque($id);
-            $dado['entrada']    += $quant;
-            $dado['em_estoque'] += $quant;
+            $dado['inStock'] += $quant;
             
-            $sql = self::$pdo->prepare('UPDATE estoque SET em_estoque = :em, entrada = :e WHERE estoque.id = :id');
-            $sql->bindValue(':e',$dado['entrada']);
-            $sql->bindValue(':em',$dado['em_estoque']);
+            $sql = self::$pdo->prepare('UPDATE products SET inStock = :em WHERE id = :id');
+            $sql->bindValue(':em',$dado['inStock']);
             $sql->bindValue(':id',$id);
             $sql->execute();
+
+            self::productEntry($dado['code'],$dado['name'],$quant,date('d/m/y'));
 
         } catch (\PDOException $errorPdo) {
             return $errorPdo->getMessage();
         }
+    }
+
+    public static function productEntry($code,$name,$amount,$date){
+
+        try {
+            
+            $sql = self::$pdo->prepare('INSERT INTO productentry(productCode,productName,amout,productInsertionDate) VALUES(:c,:n,:a,:d)');
+            $sql->bindValue(':c',$code);
+            $sql->bindValue(':n',$name);
+            $sql->bindValue(':a',$amount);
+            $sql->bindValue(':d',$date);
+            $sql->execute();
+
+        } catch (PDOException $errorPdo) {
+            echo $errorPdo->getMessage();
+        }
+
+    }
+
+    public static function getProductEntry(){
+
+        try {
+            
+            $sql = self::$pdo->prepare('SELECT * FROM productentry ORDER BY id DESC');
+
+        } catch (PDOException $errorPdo) {
+            echo $errorPdo->getMessage();
+        }
+
     }
 
     public static function removeEstoque($id,$quant){
@@ -62,7 +91,7 @@ class Product extends DataBase{
             $dado['saida']          += $quant;
             $dado['em_estoque']     -= $quant;
             
-            $sql = self::$pdo->prepare('UPDATE estoque SET em_estoque = :em, saida = :s WHERE estoque.id = :id');
+            $sql = self::$pdo->prepare('UPDATE products SET em_estoque = :em, saida = :s WHERE estoque.id = :id');
             $sql->bindValue(':s',$dado['saida']);
             $sql->bindValue(':em',$dado['em_estoque']);
             $sql->bindValue(':id',$id);

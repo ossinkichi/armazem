@@ -11,7 +11,6 @@ class funcionariosController extends Controller{
     }
 
     public function  index(){
-
         if(!isset($_SESSION['accessLevel'])){
             header('location: login');
         }
@@ -31,18 +30,22 @@ class funcionariosController extends Controller{
     }
 
     public function alterar(){
-        $this->carregarTemplate('ChangeEmployeeData',$dados = [],'Funcionarios',[]);
 
-    }
-
-    public function perfil() {
-        
-        if(isset($_GET) && !empty($_GET)){
-            $dado = htmlspecialchars($_GET['pos']);
-            $dados = $this->user::perfil($dado);
+        if($_SERVER['REQUEST_METHOD'] != 'GET'){
+            header('location: \armazem\home');
         }
 
-        $this->carregarTemplate('perfil',$dados,'Dados do Funcionario '.$dados['name'],[]);
+        if(!isset($_GET['pos']) || empty($_GET['pos'])){
+            header('location: \armazem\home');
+        }
+
+
+        if(isset($_GET) && !empty($_GET)){
+            $id = htmlspecialchars($_GET['pos']);
+            $dados = $this->user::perfil($id);
+        }
+
+        $this->carregarTemplate('ChangeEmployeeData',$dados??[],'Funcionarios',[]);
     }
 
     public function register() {

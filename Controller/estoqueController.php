@@ -21,12 +21,26 @@ class estoqueController extends Controller{
         $this->carregarTemplate('productList',$dados,'Estoque',[]);
 
     }
+
+    public function getEstoqueJson(){
+        $dados = $this->produto::getProduto();
+
+        echo json_encode($dados);
+    }
     
     protected function estoque(){
         
         $dados = $this->produto::getProduto();
         
         return $dados;
+        
+    }
+    
+    protected function entrada(){
+        
+        $dados = $this->produto::getProductEntry();
+        
+        $this->carregarTemplate('productInputList',$dados,'Registro de entrada de produtos',$dados = []);
         
     }
     
@@ -54,18 +68,17 @@ class estoqueController extends Controller{
         }
     }
 
-    public function adicionar($id,$quant){
+    public function adicionar(int $id,int $quant){
 
         $dados = $this->produto::getEstoque($id);
 
-        print_r($dados);
         $this->produto::addEstoque($id,$quant);
 
         header('location: \armazem/estoque ');
 
     }
 
-    public function remover($id,$quant){
+    public function remover(int $id,int $quant){
 
         $dados  = $this->produto::getEstoque($id);
 

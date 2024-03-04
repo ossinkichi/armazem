@@ -17,6 +17,10 @@
                     ?>
 
                     <li class="nav-item ms-4">
+                        <a href="estoque/entrada" class="nav-link text-light">Resgistro de entrada</a>
+                    </li>
+
+                    <li class="nav-item ms-4">
                         <a class="nav-link text-light" href="relatorio">Relatorios</a>
                     </li>
 
@@ -25,7 +29,7 @@
                     </li>
 
                     <li class="nav-item ms-4">
-                        <a class="nav-link text-light" href="#">Pedido</a>
+                        <a class="nav-link text-light" href="#">Pedidos</a>
                     </li> 
 
                     <?php
@@ -34,7 +38,7 @@
                     ?>
 
                     <li class="nav-item ms-4">
-                        <a class="nav-link text-light" href="#">Fazer Relatorios</a>
+                        <a class="nav-link text-light" href="relatorio/criarRelarios">Fazer Relatorios</a>
                     </li>
 
                     <li class="nav-item ms-4">

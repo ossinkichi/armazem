@@ -1,25 +1,50 @@
 <?php
 
 class relatorioController extends Controller{
+
+    private $relatorios;
    
     public function __construct() {
-        session_start()        ;
+        $this->relatorios = new Reports;
+
+        session_start();
     }
 
     public function  index(){
 
         $dados = $this->getRelatorios();
         
-        $this->carregarTemplate('listOfReports',$dados,'Relatorios Mensais',[]);
+        $this->carregarTemplate('listOfReports',$dados,'Relatorios',[]);
 
     }
 
     public function getRelatorios(){
 
-        $relatorios = new Reports;
-        $dados = $relatorios::getReports();
+        $dados = $this->relatorios::getReports();
 
         return $dados;
+
+    }
+
+    public function criarRelarios(){
+        $this->carregarTemplate('registerReports',[],'Criar Relatorios',[]);
+    }
+
+    public function setNewReport(){
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $author = htmlspecialchars($_POST['author']);
+            $report = htmlspecialchars($_POST['report']);
+            $code = htmlspecialchars($_POST['code']);
+            $date   = date('d/m/y');
+
+            $this->relatorios::setReport($author,$report,$date,$code);
+
+            header('location: /armazem/estoque');
+        }
+
+        // echo $date;
+
 
     }
 
