@@ -2,13 +2,13 @@
     <div class="container-fluid">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a href="\armazem\home" class="nav-link text-light">Voltar</a>
+                <a href="\home" class="nav-link text-light">Voltar</a>
             </li>
         </ul>
 
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a href="logout" class="nav-link text-light">
+                <a href="\login/logout" class="nav-link text-light">
                     Sair
                     <img src="assets/svg/logout.svg" alt="">
                 </a>

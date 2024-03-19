@@ -11,7 +11,7 @@ class Product extends DataBase{
             $sql = self::$pdo->prepare('SELECT * FROM products');
             $sql->execute();
 
-            $dados = $sql->fetchall(PDO::FETCH_ASSOC);
+            $dados = $sql->fetchAll(PDO::FETCH_ASSOC);
 
             return $dados;
 
@@ -132,5 +132,41 @@ class Product extends DataBase{
 
     }
 
+    public static function setNewOrder($code,$name,$amount,$author,$date){
+        try {
+            
+            $sql = self::$pdo->prepare('INSERT INTO requests(productCode,productName,amount,authorOfTheRequest,	requestDate) VALUE(:pc,:pn,:a,:aotr,:rd)');
+            $sql->bindValue(':pc',$code);
+            $sql->bindValue(':pn',$name);
+            $sql->bindValue(':a',$amount);
+            $sql->bindValue(':aotr',$author);
+            $sql->bindValue(':rd',$date);
+
+            $sql->execute();
+
+        } catch (\PDOException $errorPdo) {
+            return $errorPdo->getCode();
+        }
+    }
+
+    public static function getOrder(){
+
+        $sql    = self::$pdo->prepare('SELECT * FROM requests');
+        $sql->execute();
+        $dados  = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+        return $dados;
+
+    }
+
+    public static function acceptOrder($id){
+        try {
+            $sql = self::$pdo->prepare('UPDATE requests SET status = "Aceito" WHERE requests.id = :id');
+            $sql->bindValue(':id',$id);
+            $sql->execute();
+        } catch (\PDOException $errorPdo) {
+            return $errorPdo->getCode();
+        }
+    }
 
 }

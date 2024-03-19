@@ -2,7 +2,7 @@
     <div class="container-fluid navbar-expand-lg">
         <ul class="navbar-nav">
             <li class="nav-item ms-4">
-                <a class="nav-link text-light " href="\armazem\estoque">
+                <a class="nav-link text-light " href="\estoque">
                     <img src="\assets/svg/arrowleft.svg" alt="">    
                     Voltar
                 </a>
@@ -10,7 +10,7 @@
         </ul>
         <ul class="navbar-nav">            
             <li class="nav-item ms-4">
-                <a class="nav-link text-light" href="login/logout">
+                <a class="nav-link text-light" href="/login/logout">
                     sair
                     <img src="\assets/svg/logout.svg" alt="Logout" width="30">
                 </a>

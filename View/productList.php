@@ -29,7 +29,7 @@
                     </li>
 
                     <li class="nav-item ms-4">
-                        <a class="nav-link text-light" href="#">Pedidos</a>
+                        <a class="nav-link text-light" href="estoque/pedidos">Pedidos</a>
                     </li> 
 
                     <?php
@@ -51,7 +51,7 @@
             ?>
 
             <li class="nav-item ms-4">
-                <a class="nav-link text-light" href="login/logout">
+                <a class="nav-link text-light" href="/login/logout">
                     sair
                     <img src="\assets/svg/logout.svg" alt="Logout" width="30">
                 </a>

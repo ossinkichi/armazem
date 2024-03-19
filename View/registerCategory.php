@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link text-light" href="\armazem\estoque">Voltar</a>
+                <a class="nav-link text-light" href="\estoque/produto">Voltar</a>
             </li>
         </ul>
     </div>

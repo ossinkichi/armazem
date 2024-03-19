@@ -2,7 +2,7 @@
     <div class="container-fluid d-flex flex-row align-items-center justify-content-end">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link text-light" href="login/logout">
+                <a class="nav-link text-light" href="\login/logout">
                     sair
                     <img src="\assets/svg/logout.svg" alt="Logout" width="30">
                 </a>

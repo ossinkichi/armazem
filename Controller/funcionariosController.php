@@ -5,8 +5,6 @@ class funcionariosController extends Controller{
     private $user;
 
     public function __construct() {
-        session_start();
-
         $this->user = new Usuario;
     }
 

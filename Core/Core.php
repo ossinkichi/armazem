@@ -12,7 +12,7 @@ class Core extends Controller{
         $url = $_SERVER['REQUEST_URI'];
 
         $url = explode('/',ltrim($url, '/'));
-        array_shift($url);
+        // array_shift($url);
 
         if(!empty($url[0])){
 

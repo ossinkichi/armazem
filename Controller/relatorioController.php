@@ -7,7 +7,6 @@ class relatorioController extends Controller{
     public function __construct() {
         $this->relatorios = new Reports;
 
-        session_start();
     }
 
     public function  index(){

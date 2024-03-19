@@ -1,11 +1,11 @@
-let inputCode = document.querySelector('.code')
-let inputProduct = document.querySelector('.name')
-let inputAmount = document.querySelector('.amount')
-let btnSubmit = document.querySelector('.btn-success')
+const inputCode = document.querySelector('.code')
+const inputProduct = document.querySelector('.name')
+const inputAmount = document.querySelector('.amount')
+const btnSubmit = document.querySelector('.btn')
 
 
 $.ajax({
-    url: 'http://localhost:8000/armazem/estoque/getEstoqueJson',
+    url: 'http://localhost:8000/estoque/getEstoqueJson',
     method: 'POST',
     dataType: 'json'
 }).done(function(res){
@@ -20,32 +20,20 @@ $.ajax({
     })
 })
 
-btnSubmit.addEventListener('click',()=>{
-    alert('clicado')
+
+$('#form').submit(function(e){
+    e.preventDefault()
+
+    let code   = inputCode.value
+    let name   = inputProduct.value
+    let amount = inputAmount.value
+
+    $.ajax({
+        url: 'http://localhost:8000/estoque/addOrder',
+        method: 'POST',
+        data: {name: name, code: code, amount: amount},
+        dataType: 'json'
+    }).done(function(res){
+        console.log(res)
+    })
 })
-
-
-
-
-
-
-
-// function setCompra(res){
-//     inputCode.addEventListener('blur', function(){
-
-//             for(i = 0; i < res.length; i++){
-//                 console.log(res)
-//                 // if(inputCode.value == res[i].code){
-//                 //     inputProduct.value = res[i].name
-//                 //     inputPrice.value = res[i].price
-//                 //     inputQuant.addEventListener('blur', function(){
-//                 //         inputPriceAll.value = (inputQuant.value * inputPrice.value)
-//                 //     })
-
-//                 // }else if(inputCode.value != res[i].code){
-//                 //     alert('Produto não encontrado!')
-//                 // }
-//             }
-//         })
-
-// }

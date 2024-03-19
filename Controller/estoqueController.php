@@ -5,8 +5,6 @@ class estoqueController extends Controller{
     private $produto;
 
     public function __construct() {
-        session_start();
-
         $this->produto = new Product;
     }
 
@@ -133,5 +131,31 @@ class estoqueController extends Controller{
 
         $this->carregarTemplate('registerOrder',[],'Estoque',[]);
 
+    }
+
+    public function addOrder(){
+        echo json_encode($_POST);
+
+        $code   = htmlspecialchars($_POST['code']);
+        $name   = htmlspecialchars($_POST['name']);
+        $amount = htmlspecialchars($_POST['amount']);
+        $author = htmlspecialchars($_SESSION['name']);
+        $date   = date('y-m-d');
+
+        $this->produto::setNewOrder($code,$name,$amount,$author,$date);
+    }
+
+    public function pedidos(){
+        $dados = $this->produto::getOrder();
+
+        $this->carregarTemplate('orderList',$dados,'Pedidos de reposição do estoque',[]);
+    }
+
+    public function  acceptOrder() {
+        $id = htmlspecialchars($_GET['code']);
+
+        $this->produto::acceptOrder($id);
+
+        header('location: \estoque/pedidos');
     }
 }

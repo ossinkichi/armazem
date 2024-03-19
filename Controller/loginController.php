@@ -3,7 +3,6 @@
 class loginController extends Controller{
 
     public function  index(){
-        session_start();
         if(isset($_SESSION['accessLevel'])){
             header('location: home');
         }
@@ -35,11 +34,10 @@ class loginController extends Controller{
                 if($dadosUser[$i]['accessLevel'] == 2){
                     header('location: /armazem/login'); 
                 }else if(password_verify($password,$dadosUser[$i]['password'])){
-                    session_start();
                     $_SESSION['accessLevel'] = $dadosUser[$i]['accessLevel'];
                     $_SESSION['name'] = $dadosUser[$i]['name'];
                     
-                    header('location: /armazem/home');
+                    header('location: /home');
                 }else{
                     header('location: /armazem/login');
                 }
@@ -49,9 +47,9 @@ class loginController extends Controller{
     }
 
     public function logout(){
-        if(session_start()){
+        if($_SESSION['name']){
             session_destroy();
-            header('location: \armazem\login ');
+            header('location:   \login ');
         }
     }
 

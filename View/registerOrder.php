@@ -2,13 +2,13 @@
     <div class="container-fluid">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a href="\armazem\home" class="nav-link text-light">Voltar</a>
+                <a href="\home" class="nav-link text-light">Voltar</a>
             </li>
         </ul>
 
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a href="logout" class="nav-link text-light">
+                <a href="/login\logout" class="nav-link text-light">
                     Sair
                     <img src="\assets/svg/logout.svg" alt="">
                 </a>
@@ -25,7 +25,7 @@
 
             <h1 class="text-center mb-4">Adicionar pedido</h1>
 
-            <form action="" method="post">
+            <form action="" method="post" id="form">
 
                 <div class="form-floating mb-3">
                     <input type="number" min="0" name="code" class="form-control code" id="floatingInput" placeholder="Codigo do produto">
@@ -43,7 +43,7 @@
                 </div>
 
                 <div class="mt-3">
-                    <button class="btn btn-success">Registrar Promoção</button>
+                    <button type="submit" class="btn btn-success">Registrar Promoção</button>
                 </div>
 
             </form>       

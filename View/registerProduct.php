@@ -2,7 +2,7 @@
     <div class="container-fluid navbar-expand-lg">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a href="\armazem\estoque" class="nav-link text-light">
+                <a href="\estoque" class="nav-link text-light">
                     <img src="assets/svg/arrowLeft.svg" alt="">    
                     Voltar
                 </a>
