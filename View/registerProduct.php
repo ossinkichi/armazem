@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="number" name="price" class="form-control" id="floatingPassword" placeholder="Preço do produto">
+                    <input type="text" name="price" class="form-control" id="floatingPassword" placeholder="Preço do produto">
                     <label for="floatingPrice">Preço do produto</label>
                 </div>
 

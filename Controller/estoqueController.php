@@ -36,11 +36,11 @@ class estoqueController extends Controller{
         
     }
     
-    protected function entrada(){
+    public function entrada(){
         
         $dados = $this->produto::getProductEntry();
         
-        $this->carregarTemplate('productInputList',$dados,'Registro de entrada de produtos',$dados = []);
+        $this->carregarTemplate('productInputList',$dados,'Registro de entrada de produtos',[]);
         
     }
     
@@ -49,40 +49,40 @@ class estoqueController extends Controller{
         $dados = $this->estoque();
         $categories = $this->getCategories();
         
-        $this->carregarTemplate('registerProdcut',$dados,'Novo Produto',$categories);
+        $this->carregarTemplate('registerProduct',$dados,'Novo Produto',$categories);
 
     }
 
     public function alterarEstoque(){
         $dados = $_GET;
 
-        if(!isset($dados['adicionar']) || empty($dados['adicionar'])){
+        if(!isset($dados['amount']) || empty($dados['amount'])){
+            header('location: \armazem/estoque ');
+        }
+
+        if(!isset($dados['code']) || empty($dados['code'])){
             header('location: \armazem/estoque ');
         }
         
-        if(array_key_exists('adicionar',$dados) && !empty($dados['adicionar'])){
-            $this->adicionar($dados['adicionar'],$dados['quant']);
-        }
-        if(array_key_exists('remover',$dados) && !empty($dados['adicionar'])){
-            $this->remover($dados['remover'],$dados['quant']);
+        if(array_key_exists('code',$dados)){
+            $amount = htmlspecialchars($dados['amount']);
+            $code  = htmlspecialchars($dados['code']);
+            $this->adicionar($code,$amount);
         }
     }
 
-    public function adicionar(int $id,int $quant){
+    public function adicionar(int $code,int $amount){
 
-        $dados = $this->produto::getEstoque($id);
+        $dados = $this->produto::getEstoque($code);
+        $nameProduct    = $dados['name'];
+        $date           = date('y-m-d');
+        $newStosk       = $dados['inStock'] += $amount;
 
-        $this->produto::addEstoque($id,$quant);
 
-        header('location: \armazem/estoque ');
+        $this->produto::productEntry($code,$nameProduct,$amount,$date);
+        $this->produto::addEstoque($code,$newStosk);
 
-    }
 
-    public function remover(int $id,int $quant){
-
-        $dados  = $this->produto::getEstoque($id);
-
-        $this->produto::removeEstoque($id,$quant);
 
         header('location: \armazem/estoque ');
 
@@ -126,6 +126,12 @@ class estoqueController extends Controller{
 
         $this->produto::setNewCategory($category);
 
-        header('location: \armazem\estoque');
+        header('location: \armazem\estoque\produto');
+    }
+
+    public function pedido(){
+
+        $this->carregarTemplate('registerOrder',[],'Estoque',[]);
+
     }
 }

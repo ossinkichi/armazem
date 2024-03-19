@@ -29,6 +29,12 @@ class funcionariosController extends Controller{
 
     }
 
+    public function getEmployees(){
+        $dados = $this->user::getUsers();
+
+        echo json_encode($dados);
+    }
+
     public function alterar(){
 
         if($_SERVER['REQUEST_METHOD'] != 'GET'){

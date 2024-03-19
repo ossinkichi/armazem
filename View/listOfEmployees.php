@@ -3,7 +3,7 @@
         <ul class="navbar-nav">
             <li class="nav-item ms-4">
                 <a class="nav-link text-light" href="home">
-                    <img src="assets/svg/arrowLeft.svg" alt="">    
+                    <img src="\assets/svg/arrowLeft.svg" alt="">    
                     Voltar
                 </a>
             </li>
@@ -29,7 +29,7 @@
             <li class="nav-item ms-4">
                 <a class="nav-link text-light" href="login/logout">
                     sair
-                    <img src="assets/svg/logout.svg" alt="Logout" width="30">
+                    <img src="\assets/svg/logout.svg" alt="Logout" width="30">
                 </a>
             </li>
         </ul>
@@ -42,13 +42,15 @@
             
         <div class="d-flex flex-row justify-content-between mb-4">
             <div class="btn-group" role="group" style="width: 150px;">
-                <button class="btn btn-success">Ativos</button>
-                <button class="btn btn-danger">Desativados</button>
+                <button id="btn-active" class="btn btn-success">Ativos</button>
+                <button id="btn-disabled" class="btn btn-danger">Desativados</button>
             </div>
 
             <div>
             <div>
-                <input type="text" class="form-control" placeholder="Pesquisar Funcionario" aria-label="Pesquisar Funcionario">
+                <form action="" method="post">
+                    <input type="text" id="searchEmployers" class="form-control" placeholder="Pesquisar Funcionario" aria-label="Pesquisar Funcionario">
+                </form>
             </div>
             </div>
         </div>
@@ -62,12 +64,13 @@
                     <th scope="col">Sexo</th>
                     <th scope="col">E-mail</th>
                     <th scope="col">Telefone</th>
-                    <th scope="col">Nivel de acesso</th>
                     <th scope="col">Estado</th>
+                    <th scope="col">Nivel de acesso</th>
                     <th class="text-center" scope="col">Config</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody style="display: none;" id="select"></tbody>
+            <tbody id="normal">
         
                 <?php
                     for($i = 0; $i < count($this->dados); $i++){
@@ -113,3 +116,6 @@
     </div>
 
 </section>
+
+<script src="\js/jQuery/jQueryV3.7.1.js"></script>
+<script src="\js/employees.js"></script>

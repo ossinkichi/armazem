@@ -21,11 +21,11 @@ class Product extends DataBase{
 
     }
 
-    public static function getEstoque($id){
+    public static function getEstoque($code){
         try {
             
-            $sql = self::$pdo->prepare('SELECT * FROM products WHERE id = :id');
-            $sql->bindValue(':id',$id);
+            $sql = self::$pdo->prepare('SELECT * FROM products WHERE code = :cd');
+            $sql->bindValue(':cd',$code);
             $sql->execute();
 
             $dados = $sql->fetch(PDO::FETCH_ASSOC);
@@ -37,21 +37,17 @@ class Product extends DataBase{
         }
     }
 
-    public static function addEstoque($id,$quant){
+    public static function addEstoque($code,$amount){
         try {
-
-            $dado = self::getEstoque($id);
-            $dado['inStock'] += $quant;
             
-            $sql = self::$pdo->prepare('UPDATE products SET inStock = :em WHERE id = :id');
-            $sql->bindValue(':em',$dado['inStock']);
-            $sql->bindValue(':id',$id);
+            $sql = self::$pdo->prepare('UPDATE products SET inStock = :em WHERE code = :cd');
+            $sql->bindValue(':em',$amount);
+            $sql->bindValue(':cd',$code);
             $sql->execute();
 
-            self::productEntry($dado['code'],$dado['name'],$quant,date('d/m/y'));
 
         } catch (\PDOException $errorPdo) {
-            return $errorPdo->getMessage();
+            echo $errorPdo->getMessage();
         }
     }
 
@@ -59,11 +55,11 @@ class Product extends DataBase{
 
         try {
             
-            $sql = self::$pdo->prepare('INSERT INTO productentry(productCode,productName,amout,productInsertionDate) VALUES(:c,:n,:a,:d)');
-            $sql->bindValue(':c',$code);
-            $sql->bindValue(':n',$name);
+            $sql = self::$pdo->prepare('INSERT INTO productentry(codeProduct,productName,amount,productInsertionDate) VALUES(:cd,:pn,:a,:dt)');
+            $sql->bindValue(':cd',$code);
+            $sql->bindValue(':pn',$name);
             $sql->bindValue(':a',$amount);
-            $sql->bindValue(':d',$date);
+            $sql->bindValue(':dt',$date);
             $sql->execute();
 
         } catch (PDOException $errorPdo) {
@@ -77,29 +73,16 @@ class Product extends DataBase{
         try {
             
             $sql = self::$pdo->prepare('SELECT * FROM productentry ORDER BY id DESC');
-
-        } catch (PDOException $errorPdo) {
-            echo $errorPdo->getMessage();
-        }
-
-    }
-
-    public static function removeEstoque($id,$quant){
-        try {
-
-            $dado = self::getEstoque($id);
-            $dado['saida']          += $quant;
-            $dado['em_estoque']     -= $quant;
-            
-            $sql = self::$pdo->prepare('UPDATE products SET em_estoque = :em, saida = :s WHERE estoque.id = :id');
-            $sql->bindValue(':s',$dado['saida']);
-            $sql->bindValue(':em',$dado['em_estoque']);
-            $sql->bindValue(':id',$id);
             $sql->execute();
 
-        } catch (\PDOException $errorPdo) {
-            return $errorPdo->getMessage();
+            $dados = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+            return $dados;
+
+        } catch (PDOException $errorPdo) {
+            echo $errorPdo->getCode();
         }
+
     }
 
     public static function newProduto($code,$name,$price,$estoque,$category) {
